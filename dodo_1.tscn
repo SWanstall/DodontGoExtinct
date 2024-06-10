@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b10iff0xtdjqt"]
+
+[ext_resource type="PackedScene" uid="uid://dfgwf1gpjagef" path="res://LowPolyDodo2.glb" id="1_ca2kd"]
+[ext_resource type="Script" path="res://dodo_1.gd" id="1_lfxdc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmb61"]
+height = 1.58794
+
+[node name="Dodo1" type="CharacterBody3D"]
+script = ExtResource("1_lfxdc")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Dodo" parent="Pivot" instance=ExtResource("1_ca2kd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82718, 0)
+shape = SubResource("CapsuleShape3D_mmb61")
