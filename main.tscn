@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://carlvm4bumuoj"]
+[gd_scene load_steps=5 format=3 uid="uid://carlvm4bumuoj"]
+
+[ext_resource type="Material" uid="uid://cx1j7yjkfmgtp" path="res://Dirt.tres" id="1_5fqx7"]
+[ext_resource type="PackedScene" uid="uid://b10iff0xtdjqt" path="res://dodo_1.tscn" id="2_a16g2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_empem"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bf5nm"]
+material = ExtResource("1_5fqx7")
+size = Vector3(100, 1, 100)
 
 [node name="Main" type="Node"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_empem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_bf5nm")
+
+[node name="Dodo1" parent="." instance=ExtResource("2_a16g2")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.764618, 0.644484, 0, -0.644484, 0.764618, 0, 4.24946, 5.95218)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.31881, 0.947819, 0, -0.947819, 0.31881, 0, 43.7012, 16.2805)
