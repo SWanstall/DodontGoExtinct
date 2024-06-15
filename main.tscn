@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://carlvm4bumuoj"]
+[gd_scene load_steps=6 format=3 uid="uid://carlvm4bumuoj"]
 
 [ext_resource type="Material" uid="uid://cx1j7yjkfmgtp" path="res://Dirt.tres" id="1_5fqx7"]
+[ext_resource type="Script" path="res://main.gd" id="1_rnyd5"]
 [ext_resource type="PackedScene" uid="uid://b10iff0xtdjqt" path="res://dodo_1.tscn" id="2_a16g2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_empem"]
@@ -11,6 +12,7 @@ material = ExtResource("1_5fqx7")
 size = Vector3(100, 1, 100)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_rnyd5")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

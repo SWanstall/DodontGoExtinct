@@ -24,29 +24,16 @@ func _physics_process(delta):
 	## Get the input direction and handle the movement/deceleration.
 	## As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = ($Pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if up or down:
-		velocity = direction * speed * delta
-	elif left or right:
-		var target = Basis.looking_at(direction)
-		$Pivot.transform  = $Pivot.transform.interpolate_with(target, angular_speed * delta)
+	if left or right:
+		velocity = Vector3(0, 0, 0) # no moving while turning
+		rotation -= Vector3(0, input_dir.x, 0) * angular_speed * delta # rotate character
+	elif up or down:
+		var direction = get_global_transform().basis.z * input_dir.y # find direction character is facing
+		velocity = direction * speed * delta # move forwards or back in reference to facing direction
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed) # when not pressing buttons, smoothly stop
 		velocity.z = move_toward(velocity.z, 0, speed)
-	#var rotate = (transform.basis * Vector3(0, input_dir.angle(), 0)).normalized()
-	#var move = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
-	#if direction:
-		##velocity.x = direction.x * speed
-		#velocity.z = direction.z * speed
-	#else:
-		##velocity.x = move_toward(velocity.x, 0, speed)
-		#velocity.z = move_toward(velocity.z, 0, speed)
-
 
 	move_and_slide()
-	
-	#if direction != Vector3.ZERO:
-		## Setting the basis property will affect the rotation of the node.
-		#$Pivot.basis = Basis.looking_at(direction)
-		
+
