@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b10iff0xtdjqt"]
+[gd_scene load_steps=6 format=3 uid="uid://b10iff0xtdjqt"]
 
 [ext_resource type="PackedScene" uid="uid://dfgwf1gpjagef" path="res://LowPolyDodo2.glb" id="1_ca2kd"]
 [ext_resource type="Script" path="res://dodo_1.gd" id="1_lfxdc"]
+[ext_resource type="Script" path="res://CamBase.gd" id="3_e0v1h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmb61"]
 height = 1.58794
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_nr5gc"]
 
 [node name="Dodo1" type="CharacterBody3D"]
 script = ExtResource("1_lfxdc")
@@ -17,3 +20,18 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82718, 0)
 shape = SubResource("CapsuleShape3D_mmb61")
+
+[node name="CamBase" type="Node3D" parent="."]
+script = ExtResource("3_e0v1h")
+
+[node name="HorizontalPivot" type="Node3D" parent="CamBase"]
+
+[node name="VerticalPivot" type="Node3D" parent="CamBase/HorizontalPivot"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamBase/HorizontalPivot/VerticalPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.898388, 0.439202, 0, -0.439202, 0.898388, 0, 2.13308, -0.725564)
+shape = SubResource("SeparationRayShape3D_nr5gc")
+spring_length = 5.995
+
+[node name="Camera3D" type="Camera3D" parent="CamBase/HorizontalPivot/VerticalPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.972622, 0.232393, 0, -0.232393, 0.972622, 0, -0.0131207, 6.22396)

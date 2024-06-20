@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 200
 @export var angular_speed = 2
-@export var jump_velocity = 800
+@export var jump_velocity = 600
 @export var fall_acceleration = 50
 
 var input_dir = 0
@@ -32,6 +32,8 @@ func get_input():
 		# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		jump = true
+	#if InputEventMouseMotion:
+		#
 
 
 func _physics_process(delta):
