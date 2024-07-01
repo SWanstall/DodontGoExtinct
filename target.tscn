@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxa48efyjkyln"]
+
+[ext_resource type="Script" path="res://target.gd" id="1_aopqx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w1rim"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1djey"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8yj6i"]
+material = SubResource("StandardMaterial3D_1djey")
+
+[node name="Target" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.962755, 0)
+script = ExtResource("1_aopqx")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106037, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_w1rim")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_8yj6i")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.8, 0, 0, 0, 0.4, 0, 0, 0)

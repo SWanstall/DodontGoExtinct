@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://carlvm4bumuoj"]
+[gd_scene load_steps=8 format=3 uid="uid://carlvm4bumuoj"]
 
 [ext_resource type="Material" uid="uid://cx1j7yjkfmgtp" path="res://Dirt.tres" id="1_5fqx7"]
 [ext_resource type="Script" path="res://main.gd" id="1_rnyd5"]
 [ext_resource type="PackedScene" uid="uid://b10iff0xtdjqt" path="res://dodo_1.tscn" id="2_a16g2"]
+[ext_resource type="PackedScene" uid="uid://d4a6ahui7ksg7" path="res://gun.tscn" id="4_5wmt1"]
+[ext_resource type="PackedScene" uid="uid://dxa48efyjkyln" path="res://target.tscn" id="5_rgbdt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_empem"]
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bf5nm"]
+lightmap_size_hint = Vector2i(1004, 516)
 material = ExtResource("1_5fqx7")
 size = Vector3(100, 1, 100)
 
@@ -25,9 +28,15 @@ mesh = SubResource("BoxMesh_bf5nm")
 
 [node name="Dodo1" parent="." instance=ExtResource("2_a16g2")]
 
+[node name="Gun" parent="Dodo1" instance=ExtResource("4_5wmt1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.542198, 1.46961, -0.595529)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.764618, 0.644484, 0, -0.644484, 0.764618, 0, 4.24946, 5.95218)
 visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.31881, 0.947819, 0, -0.947819, 0.31881, 0, 43.7012, 16.2805)
+
+[node name="Target" parent="." instance=ExtResource("5_rgbdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559656, 0.962755, -9.21447)

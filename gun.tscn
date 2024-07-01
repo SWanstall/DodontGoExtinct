@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4a6ahui7ksg7"]
+
+[ext_resource type="Script" path="res://gun.gd" id="1_hgcbt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3pot"]
+albedo_color = Color(0.568201, 0.268735, 0.124986, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wmc0u"]
+material = SubResource("StandardMaterial3D_b3pot")
+size = Vector3(0.145, 0.155, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7dc"]
+albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+metallic = 1.0
+roughness = 0.48
+
+[sub_resource type="BoxMesh" id="BoxMesh_4d1sq"]
+material = SubResource("StandardMaterial3D_rd7dc")
+size = Vector3(0.215, 0.235, 0.175)
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_hgcbt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wmc0u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.417603)
+mesh = SubResource("BoxMesh_4d1sq")
