@@ -40,3 +40,5 @@ transform = Transform3D(1, 0, 0, 0, 0.31881, 0.947819, 0, -0.947819, 0.31881, 0,
 
 [node name="Target" parent="." instance=ExtResource("5_rgbdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.559656, 0.962755, -9.21447)
+
+[connection signal="shoot" from="Dodo1/Gun" to="." method="_on_gun_shoot"]
