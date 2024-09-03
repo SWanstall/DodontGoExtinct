@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2ndt0m0vplxw"]
+[gd_scene load_steps=14 format=3 uid="uid://2ndt0m0vplxw"]
 
 [ext_resource type="Script" path="res://grenade_projectile.gd" id="1_ejc12"]
 
@@ -22,6 +22,36 @@ material = SubResource("StandardMaterial3D_onhj4")
 radius = 0.2
 height = 0.4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ps1p5"]
+albedo_color = Color(1, 0.784314, 0, 1)
+emission_enabled = true
+emission = Color(0.858824, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0mtj8"]
+material = SubResource("StandardMaterial3D_ps1p5")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_mocn1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.796791, 0.230769), -2.36319, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkhca"]
+transparency = 1
+albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kn54b"]
+material = SubResource("StandardMaterial3D_gkhca")
+radius = 1.5
+height = 3.0
+
+[sub_resource type="Curve" id="Curve_pojrp"]
+_data = [Vector2(0.026738, 0.120879), 0.0, 0.0, 0, 0, Vector2(0.139037, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4gd6w"]
+radius = 3.0
+
 [node name="Grenade_projectile" type="Node3D"]
 script = ExtResource("1_ejc12")
 
@@ -34,8 +64,42 @@ shape = SubResource("SphereShape3D_me0ky")
 mesh = SubResource("SphereMesh_iu5jw")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.6
 one_shot = true
 autostart = true
+
+[node name="shrapnel" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_0mtj8")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+scale_amount_curve = SubResource("Curve_mocn1")
+
+[node name="smoke" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 10
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_kn54b")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_pojrp")
+
+[node name="Area3D" type="Area3D" parent="."]
+process_mode = 1
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4gd6w")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

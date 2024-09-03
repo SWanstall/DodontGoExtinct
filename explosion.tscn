@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://drhwwq0k7wnel"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_w4b01"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2fhi"]
+albedo_color = Color(1, 0.784314, 0, 1)
+emission_enabled = true
+emission = Color(0.858824, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0xm5y"]
+material = SubResource("StandardMaterial3D_d2fhi")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_yd556"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.796791, 0.230769), -2.36319, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqmla"]
+transparency = 1
+albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fuiya"]
+material = SubResource("StandardMaterial3D_gqmla")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="Curve" id="Curve_ulw8g"]
+_data = [Vector2(0.026738, 0.120879), 0.0, 0.0, 0, 0, Vector2(0.139037, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_w4b01")
+
+[node name="shrapnel" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_0xm5y")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+scale_amount_curve = SubResource("Curve_yd556")
+
+[node name="smoke" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 10
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_fuiya")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_ulw8g")

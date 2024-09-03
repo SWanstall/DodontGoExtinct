@@ -32,6 +32,16 @@ func _on_gun_shoot(bullet, direction, location, speed, damage):
 	current_damage = damage
 
 
+func _on_grenade_throw(grenade, direction, location, speed, damage):
+	var spawned_grenade = grenade.instantiate()
+	add_child(spawned_grenade)
+	#spawned_bullet.rotation = direction
+	#print(direction)
+	spawned_grenade.position = location
+	spawned_grenade.velocity = direction * speed
+	current_damage = damage
+
+
 func _on_target_hit(health, id):
 	print("Hit for ", current_damage, " damage!")
 	current_hp = health
@@ -42,10 +52,4 @@ func _on_target_hit(health, id):
 		id.queue_free()
 
 
-func _on_grenade_throw(grenade, direction, location, speed):
-	var spawned_grenade = grenade.instantiate()
-	add_child(spawned_grenade)
-	#spawned_bullet.rotation = direction
-	#print(direction)
-	spawned_grenade.position = location
-	spawned_grenade.velocity = direction * speed
+
