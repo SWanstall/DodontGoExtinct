@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnforkbuhuba0"]
+
+[ext_resource type="Texture2D" uid="uid://gsx4ub7jmnt4" path="res://GunPlaceholderThumbnail.PNG" id="1_dwifo"]
+[ext_resource type="Texture2D" uid="uid://brkmdgpwllexd" path="res://GrenadePlaceholderThumbnail.PNG" id="2_tutmy"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 29.0
+offset_right = 522.0
+offset_bottom = 584.0
+allow_reselect = true
+item_count = 2
+icon_scale = 0.205
+item_0/text = "Gun"
+item_0/icon = ExtResource("1_dwifo")
+item_1/text = "Grenade"
+item_1/icon = ExtResource("2_tutmy")
