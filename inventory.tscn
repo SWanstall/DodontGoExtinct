@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnforkbuhuba0"]
+[gd_scene load_steps=4 format=3 uid="uid://dnforkbuhuba0"]
 
 [ext_resource type="Texture2D" uid="uid://gsx4ub7jmnt4" path="res://GunPlaceholderThumbnail.PNG" id="1_dwifo"]
+[ext_resource type="Script" path="res://inventory.gd" id="1_hp1ov"]
 [ext_resource type="Texture2D" uid="uid://brkmdgpwllexd" path="res://GrenadePlaceholderThumbnail.PNG" id="2_tutmy"]
 
 [node name="Inventory" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hp1ov")
 
 [node name="ItemList" type="ItemList" parent="."]
 layout_mode = 0
