@@ -2,6 +2,8 @@ extends Control
 
 var menu_open = false
 
+signal weapon_select(num)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
@@ -18,3 +20,8 @@ func _process(delta):
 		visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		menu_open = false
+
+
+func _on_item_list_item_selected(index):
+	weapon_select.emit(index)
+	print(index)

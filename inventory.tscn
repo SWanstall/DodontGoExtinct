@@ -26,3 +26,5 @@ item_0/text = "Gun"
 item_0/icon = ExtResource("1_dwifo")
 item_1/text = "Grenade"
 item_1/icon = ExtResource("2_tutmy")
+
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
