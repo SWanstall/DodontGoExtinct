@@ -53,6 +53,7 @@ func _on_weapon_selected(num):
 		await get_tree().create_timer(0.1).timeout
 		grenade.process_mode = Node.PROCESS_MODE_INHERIT
 		grenade.visible = true
+		grenade.thrown = false
 
 
 func _on_gun_shoot(bullet, direction, location, speed, damage):

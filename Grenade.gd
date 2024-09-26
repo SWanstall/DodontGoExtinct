@@ -17,8 +17,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("click") and !thrown:
-		#thrown = true
+	if Input.is_action_just_pressed("click")  and !thrown:
+		thrown = true
 		throw.emit(Grenade, -global_transform.basis.z, global_position, grenade_speed*delta, grenade_damage)
 		visible = false
 		#process_mode = Node.PROCESS_MODE_DISABLED
