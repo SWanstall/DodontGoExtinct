@@ -18,6 +18,7 @@ func _physics_process(delta):
 		primed = true
 	if Input.is_action_just_pressed("click") and primed:
 		primed = false
+		velocity = Vector3(0.0,0.0,0.0)
 		$RigidBody3D/CollisionShape3D/MeshInstance3D.visible = false
 		$shrapnel.emitting = true
 		$smoke.emitting = true
